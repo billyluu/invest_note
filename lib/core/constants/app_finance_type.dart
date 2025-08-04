@@ -1,0 +1,5 @@
+
+enum AppFinanceType {
+  stock,
+  crypto,
+}
