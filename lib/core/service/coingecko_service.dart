@@ -5,24 +5,28 @@ import 'package:invest_note/core/response/get_search_response.dart';
 import 'package:invest_note/core/service/base/base_http_service.dart';
 
 class CoingeckoService extends BaseHttpService {
-  static const String host = kDebugMode ? 'https://api.coingecko.com/api/' : 'https://pro-api.coingecko.com/api';
+  static const String host = kDebugMode
+      ? 'https://api.coingecko.com/api/'
+      : 'https://pro-api.coingecko.com/api';
   static const apiKey = 'CG-av1s9B8XA8URpUvW3VJ8AEqP';
 
-  Future<Response<GetSearchResponse>> search(String query) async =>
-      get<GetSearchResponse>(
-        AppApis.search.url,
-        queryParameters: {
-          'query': query,
-        },
-        fromJson: GetSearchResponse.fromJson,
-      );
+  Future<HttpResult<GetSearchResponse>> search(String query) async {
+    final response = await get<GetSearchResponse>(
+      AppApis.search.url,
+      queryParameters: {
+        'query': query,
+      },
+      fromJson: GetSearchResponse.fromJson,
+    );
+    return response;
+  }
 
   @override
   BaseOptions getBaseOptions() => BaseOptions(
-    baseUrl: host,
-    headers: {
-      'accept': 'application/json',
-      if (!kDebugMode) 'x-cg-pro-api-key': apiKey,
-    },
-  );
+        baseUrl: host,
+        headers: {
+          'accept': 'application/json',
+          if (!kDebugMode) 'x-cg-pro-api-key': apiKey,
+        },
+      );
 }

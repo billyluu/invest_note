@@ -24,27 +24,43 @@ abstract class BaseHttpService {
 
   BaseOptions getBaseOptions();
 
-  Future<Response<T>> get<T>(
-      String path, {
-        Map<String, dynamic>? queryParameters,
-        T Function(Map<String, dynamic> json)? fromJson,
-        Options? options,
-      }) async {
-    final res = await _dio.get(path, queryParameters: queryParameters, options: options);
-
-    final parsedData = fromJson != null
-        ? fromJson(res.data)
-        : res.data;
-
-    return Response<T>(
-      data: parsedData,
-      requestOptions: res.requestOptions,
-      statusCode: res.statusCode,
-      statusMessage: res.statusMessage,
-      headers: res.headers,
-      isRedirect: res.isRedirect,
-      redirects: res.redirects,
-      extra: res.extra,
-    );
+  Future<HttpResult<T>> get<T>(
+    String path, {
+    Map<String, dynamic>? queryParameters,
+    required T Function(Map<String, dynamic> json) fromJson,
+    Options? options,
+  }) async {
+    try {
+      final res = await _dio.get(
+        path,
+        queryParameters: queryParameters,
+        options: options,
+      );
+      return HttpSuccess<T>(fromJson(res.data));
+    } catch (e) {
+      return HttpFailure<T>(
+        'Failed to parse response: ${e.toString()}',
+        statusCode: (e is DioException) ? e.response?.statusCode : null,
+      );
+    }
   }
+}
+
+sealed class HttpResult<T> {
+  const HttpResult();
+}
+
+class HttpSuccess<T> extends HttpResult<T> {
+  final T data;
+
+  HttpSuccess(this.data);
+
+  get props => [data];
+}
+
+class HttpFailure<T> extends HttpResult<T> {
+  final String message;
+  final int? statusCode;
+
+  HttpFailure(this.message, {this.statusCode});
 }
