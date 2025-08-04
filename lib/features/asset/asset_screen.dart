@@ -17,7 +17,7 @@ class AssetScreen extends StatelessWidget {
           case AssetInitial():
             return _Main();
           case AssetSearchSuccess():
-            throw UnimplementedError();
+            return Container();
         }
         return Container();
       },),
