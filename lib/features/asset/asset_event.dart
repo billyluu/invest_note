@@ -8,3 +8,4 @@ final class AssetSearchEvent extends AssetEvent {
 
   AssetSearchEvent(this.query);
 }
+

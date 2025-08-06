@@ -2,12 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:invest_note/core/configs/debug_config.dart';
 
-abstract class BaseHttpService {
+class HttpService {
   late Dio _dio;
+  final BaseOptions baseOptions;
 
-  BaseHttpService() {
+  HttpService(this.baseOptions) {
     _dio = Dio(
-      getBaseOptions(),
+      baseOptions,
     );
 
     if (kDebugMode && httpLogOn) {
@@ -21,8 +22,6 @@ abstract class BaseHttpService {
       ));
     }
   }
-
-  BaseOptions getBaseOptions();
 
   Future<HttpResult<T>> get<T>(
     String path, {

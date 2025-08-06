@@ -24,6 +24,9 @@ class _CryptoCurrencyBottomSheetState extends State<CryptoCurrencyBottomSheet> {
             return _Main(
               state: state,
               textEditingController: _textEditingController,
+              onTap: (cryptoCoin) {
+
+              },
             );
           } else if (state is AssetInitial) {
             return _Main(
@@ -42,10 +45,12 @@ class _Main extends StatelessWidget {
   const _Main({
     required this.state,
     required this.textEditingController,
+    this.onTap,
   });
 
   final AssetSearchSuccess state;
   final TextEditingController textEditingController;
+  final Function(CryptoCoin cryptoCoin)? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +66,7 @@ class _Main extends StatelessWidget {
           Expanded(
             child: _CryptoCurrencyList(
               state: state,
-              onTap: (coin) {
-                Navigator.pop<CryptoCoin>(context, coin);
-              },
+              onTap: onTap,
             ),
           ),
         ],
@@ -112,7 +115,7 @@ class _CryptoCurrencyList extends StatelessWidget {
   });
 
   final AssetSearchSuccess state;
-  final Function(CryptoCoin cryptoCoin) onTap;
+  final Function(CryptoCoin cryptoCoin)? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +124,7 @@ class _CryptoCurrencyList extends StatelessWidget {
       itemBuilder: (context, index) {
         final coin = state.assets[index];
         return GestureDetector(
-          onTap: onTap(coin),
+          onTap: onTap?.call(coin),
           child: ListTile(
             leading: Image.network(coin.thumb),
             title: Text(coin.name),
