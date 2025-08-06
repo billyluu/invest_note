@@ -1,6 +1,6 @@
-# invest_note
+# InvestNote
 
-## state: In development.
+**State：🚧 In development 🚧**
 
 ## Getting Started
 
