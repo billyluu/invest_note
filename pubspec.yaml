@@ -39,6 +39,7 @@ dependencies:
   json_annotation: ^4.9.0
   realm: ^20.1.1
   flutter_bloc: ^9.1.1
+  get_it: ^8.2.0
 
 
 dev_dependencies:

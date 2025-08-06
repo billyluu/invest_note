@@ -10,19 +10,9 @@ class CoingeckoService {
       : 'https://pro-api.coingecko.com/api';
   static const apiKey = 'CG-av1s9B8XA8URpUvW3VJ8AEqP';
 
-  final BaseOptions baseOptions = BaseOptions(
-    baseUrl: host,
-    headers: {
-      'accept': 'application/json',
-      if (!kDebugMode) 'x-cg-pro-api-key': apiKey,
-    },
-  );
+  final HttpService httpService;
 
-  late HttpService httpService;
-
-  CoingeckoService() {
-    httpService = HttpService(baseOptions);
-  }
+  CoingeckoService(this.httpService);
 
   Future<HttpResult<GetSearchResponse>> search(String query) async {
     final response = await httpService.get<GetSearchResponse>(
