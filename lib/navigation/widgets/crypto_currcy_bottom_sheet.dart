@@ -1,7 +1,6 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:invest_note/core/di/get_it.dart';
 import 'package:invest_note/core/response/get_search_response.dart';
 import 'package:invest_note/core/service/coingecko_service.dart';
 import 'package:invest_note/features/asset/asset_bloc.dart';
@@ -19,17 +18,15 @@ class _CryptoCurrencyBottomSheetState extends State<CryptoCurrencyBottomSheet> {
   final _textEditingController = TextEditingController();
 
   @override
+  dispose() {
+    _textEditingController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AssetBloc(CoingeckoService(
-        HttpService(BaseOptions(
-          baseUrl: CoingeckoService.host,
-          headers: {
-            'accept': 'application/json',
-            if (!kDebugMode) 'x-cg-pro-api-key': CoingeckoService.apiKey,
-          },
-        )),
-      )),
+      create: (context) => AssetBloc(getIt<CoingeckoService>()),
       child: BlocBuilder<AssetBloc, AssetState>(
         builder: (context, state) {
           if (state is AssetSearchSuccess) {

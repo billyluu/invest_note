@@ -5,10 +5,7 @@ import 'package:invest_note/core/response/get_search_response.dart';
 import 'package:invest_note/core/service/base/base_http_service.dart';
 
 class CoingeckoService {
-  static const String host = kDebugMode
-      ? 'https://api.coingecko.com/api'
-      : 'https://pro-api.coingecko.com/api';
-  static const apiKey = 'CG-av1s9B8XA8URpUvW3VJ8AEqP';
+
 
   final HttpService httpService;
 

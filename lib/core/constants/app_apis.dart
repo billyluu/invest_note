@@ -3,7 +3,7 @@ enum AppApis {
     url: '/v1/cryptocurrency/map',
   ),
   search(
-    url: 'v3/search',
+    url: '/v3/search',
   ),
   ;
 
