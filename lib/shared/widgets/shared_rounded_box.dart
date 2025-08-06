@@ -1,0 +1,36 @@
+import 'package:flutter/material.dart';
+
+class SharedRoundedBox extends StatelessWidget {
+  final Widget child;
+  final Color background;
+
+  const SharedRoundedBox({
+    super.key,
+    required this.child,
+    required this.background,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: background,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: background,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              offset: const Offset(0, 2),
+              blurRadius: 6,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: child,
+      ),
+    );
+  }
+}
