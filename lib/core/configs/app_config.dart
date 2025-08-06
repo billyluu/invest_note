@@ -7,5 +7,5 @@ class AppConfig {
       ? 'https://api.coingecko.com/api'
       : 'https://pro-api.coingecko.com/api';
 
-  static const coingeckoApiKey = 'CG-av1s9B8XA8URpUvW3VJ8AEqP';
+  static const coingeckoApiKey = 'a';
 }

@@ -1,12 +1,8 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:invest_note/core/constants/app_apis.dart';
 import 'package:invest_note/core/response/get_search_response.dart';
 import 'package:invest_note/core/service/base/base_http_service.dart';
 
 class CoingeckoService {
-
-
   final HttpService httpService;
 
   CoingeckoService(this.httpService);

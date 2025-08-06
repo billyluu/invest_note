@@ -5,8 +5,6 @@ import 'package:invest_note/core/response/get_search_response.dart';
 import 'package:invest_note/core/service/coingecko_service.dart';
 import 'package:invest_note/features/asset/asset_bloc.dart';
 
-import '../../core/service/base/base_http_service.dart';
-
 class CryptoCurrencyBottomSheet extends StatefulWidget {
   const CryptoCurrencyBottomSheet({super.key});
 
@@ -33,9 +31,7 @@ class _CryptoCurrencyBottomSheetState extends State<CryptoCurrencyBottomSheet> {
             return _Main(
               state: state,
               textEditingController: _textEditingController,
-              onTap: (cryptoCoin) {
-
-              },
+              onTap: (cryptoCoin) {},
             );
           } else if (state is AssetInitial) {
             return _Main(
