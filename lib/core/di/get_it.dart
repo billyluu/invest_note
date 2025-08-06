@@ -4,10 +4,10 @@ import 'package:get_it/get_it.dart';
 import 'package:invest_note/core/configs/app_config.dart';
 import 'package:invest_note/core/service/base/base_http_service.dart';
 import 'package:invest_note/core/service/coingecko_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 GetIt getIt = GetIt.instance;
-
-void setupGetIt() {
+Future<void> setupGetIt() async {
   // Register your services, repositories, and other dependencies here
   // Example:
   // getIt.registerLazySingleton<YourService>(() => YourServiceImplementation());
@@ -25,5 +25,5 @@ void setupGetIt() {
   getIt.registerLazySingleton<CoingeckoService>(
       () => CoingeckoService(getIt<HttpService>()));
 
-
+  getIt.registerSingleton<SharedPreferences>(await SharedPreferences.getInstance());
 }

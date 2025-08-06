@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:invest_note/core/bloc/app_setting/app_setting_bloc.dart';
+import 'package:invest_note/core/constants/app_string.s.dart';
 import 'package:invest_note/features/asset/asset_screen.dart';
 import 'package:invest_note/features/setting/setting_screen.dart';
 import 'package:invest_note/navigation/bloc/nav_cubit.dart';
@@ -15,22 +17,25 @@ class HomeBottomNavigation extends StatelessWidget {
         return Scaffold(
           body: IndexedStack(
             index: index,
-            children: const [
+            children: [
               AssetScreen(),
-              SettingScreen(),
+              BlocProvider(
+                create: (context) => context.read<AppSettingBloc>()..add(AppSettingLoadEvent()),
+                child: SettingScreen(),
+              ),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: index,
             onTap: (index) => context.read<NavCubit>().updateIndex(index),
-            items: const [
+            items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.account_balance_wallet),
-                label: 'Assets',
+                label: AppString.bottomNavBarAsset.getI18n(context),
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.settings),
-                label: 'Settings',
+                label: AppString.bottomNavBarSetting.getI18n(context),
               ),
             ],
           ),
