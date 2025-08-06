@@ -1,6 +1,6 @@
 # invest_note
 
-invest guide
+## state: In development.
 
 ## Getting Started
 
