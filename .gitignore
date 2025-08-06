@@ -6,6 +6,7 @@
 *.swp
 .buildlog/
 .history
+.fvmrc
 
 # Flutter repo-specific
 /bin/cache/
