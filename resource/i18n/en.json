@@ -1,0 +1,17 @@
+{
+  "app_name": "FreshKeeper",
+  "common_delete": "Delete",
+  "common_send": "Send",
+  "common_close": "Close",
+  "common_confirm": "Confirm",
+  "common_cancel": "Cancel",
+  "common_retry": "Retry",
+  "common_empty": "No items found",
+  "bottomNavBar_home": "Home",
+  "bottomNavBar_setting": "Setting",
+  "settingScreen_themeMode": "ThemeMode: ",
+  "settingScreen_notificationSwitch": "Notification Switch: ",
+  "settingScreen_notificationDays": "Notification Time: ",
+  "settingScreen_language": "Language: ",
+  "error_something_went_wrong": "Something went wrong."
+}
