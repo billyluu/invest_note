@@ -27,8 +27,6 @@
 version
 analysis_benchmark.json
 # Ignore IntelliJ / Android Studio library files
-.idea/libraries/Dart_Packages.xml
-.idea/libraries/Flutter_Plugins.xml
 
 # packages file containing multi-root paths
 .packages.generated
@@ -47,6 +45,7 @@ flutter_*.png
 linked_*.ds
 unlinked.ds
 unlinked_spec.ds
+.idea/libraries/
 
 # Android related
 **/android/**/gradle-wrapper.jar
