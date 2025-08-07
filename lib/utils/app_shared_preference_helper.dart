@@ -3,8 +3,10 @@ import 'package:invest_note/core/di/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppSharedPreferenceKey {
+  static const String uuidKey = 'uuidKey';
   static const String languageKey = 'languageKey';
   static const String themeModeKey = 'themeModeKey';
+  static const String hiveAesKey = 'hiveAesKey';
 }
 
 class AppSharedPreferenceHelper {
