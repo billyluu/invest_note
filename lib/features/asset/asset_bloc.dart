@@ -10,8 +10,7 @@ part 'asset_state.dart';
 class AssetBloc extends Bloc<AssetEvent, AssetState> {
   final CoingeckoService coingeckoService;
 
-  AssetBloc(this.coingeckoService) : super(AssetLoading()) {
-    initialize();
+  AssetBloc(this.coingeckoService) : super(AssetInitial()) {
     on<AssetSearchEvent>((event, emit) async {
       emit(AssetLoading());
       try {
@@ -27,10 +26,4 @@ class AssetBloc extends Bloc<AssetEvent, AssetState> {
       }
     });
   }
-
-  Future<void> initialize() async {
-    emit(AssetInitial());
-  }
-
-
 }

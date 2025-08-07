@@ -25,56 +25,34 @@ class _CryptoCurrencyBottomSheetState extends State<CryptoCurrencyBottomSheet> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AssetBloc(getIt<CoingeckoService>()),
-      child: BlocBuilder<AssetBloc, AssetState>(
-        builder: (context, state) {
-          if (state is AssetSearchSuccess) {
-            return _Main(
-              state: state,
-              textEditingController: _textEditingController,
-              onTap: (cryptoCoin) {},
-            );
-          } else if (state is AssetInitial) {
-            return _Main(
-              state: AssetSearchSuccess([]),
-              textEditingController: _textEditingController,
-            );
-          }
-          return const Center(child: CircularProgressIndicator());
-        },
-      ),
-    );
-  }
-}
-
-class _Main extends StatelessWidget {
-  const _Main({
-    required this.state,
-    required this.textEditingController,
-    this.onTap,
-  });
-
-  final AssetSearchSuccess state;
-  final TextEditingController textEditingController;
-  final Function(CryptoCoin cryptoCoin)? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _SearchBar(
-            textEditingController: textEditingController,
-          ),
-          const SizedBox(height: 8.0),
-          Expanded(
-            child: _CryptoCurrencyList(
-              state: state,
-              onTap: onTap,
-            ),
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _SearchBar(textEditingController: _textEditingController),
+            const SizedBox(height: 8.0),
+            BlocBuilder<AssetBloc, AssetState>(
+              builder: (context, state) {
+                return switch (state) {
+                  AssetLoading() =>
+                    Expanded(child: Center(child: CircularProgressIndicator())),
+                  AssetSearchSuccess() => Expanded(
+                      child: _CryptoCurrencyList(
+                        state: state,
+                        onTap: (cryptoCoin) {},
+                      ),
+                    ),
+                  _ => Expanded(
+                      child: _CryptoCurrencyList(
+                        state: AssetSearchSuccess([]),
+                      ),
+                    ),
+                };
+              },
+            )
+          ],
+        ),
       ),
     );
   }
@@ -116,7 +94,7 @@ class _SearchBarState extends State<_SearchBar> {
 class _CryptoCurrencyList extends StatelessWidget {
   const _CryptoCurrencyList({
     required this.state,
-    required this.onTap,
+    this.onTap,
   });
 
   final AssetSearchSuccess state;
