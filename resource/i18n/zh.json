@@ -15,5 +15,6 @@
   "settingScreen_notificationSwitch": "通知開關：",
   "settingScreen_notificationDays": "通知時間：",
   "settingScreen_language": "語系：",
-  "error_something_went_wrong": "發生錯誤。"
+  "error_something_went_wrong": "發生錯誤。",
+  "crypto_currency_search_hint": "輸入虛擬貨幣名稱或代號"
 }

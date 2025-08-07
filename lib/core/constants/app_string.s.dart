@@ -21,6 +21,7 @@ enum AppString {
   settingScreenNotificationDays(key: 'settingScreen_notificationDays'),
   settingScreenLanguage(key: 'settingScreen_language'),
   errorSomethingWentWrong(key: 'error_something_went_wrong'),
+  cryptoCurrencySearchHint(key: 'crypto_currency_search_hint'),
   ;
 
   const AppString({ required this.key });

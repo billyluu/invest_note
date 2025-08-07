@@ -39,7 +39,7 @@ class HomeBottomNavigation extends StatelessWidget {
               ),
             ],
           ),
-          floatingActionButton: FloatingActionButton(
+          floatingActionButton: index == 0 ? FloatingActionButton(
             mini: true,
             shape: const CircleBorder(),
             onPressed: () {
@@ -51,7 +51,7 @@ class HomeBottomNavigation extends StatelessWidget {
               );
             },
             child: const Icon(Icons.add),
-          ),
+          ) : null,
         );
       },
     );

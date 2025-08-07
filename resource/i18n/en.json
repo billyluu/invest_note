@@ -15,5 +15,6 @@
   "settingScreen_notificationSwitch": "Notification Switch: ",
   "settingScreen_notificationDays": "Notification Time: ",
   "settingScreen_language": "Language: ",
-  "error_something_went_wrong": "Something went wrong."
+  "error_something_went_wrong": "Something went wrong.",
+  "crypto_currency_search_hint": "Enter cryptocurrency name or symbol"
 }

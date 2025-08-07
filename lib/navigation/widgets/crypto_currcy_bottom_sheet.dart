@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:invest_note/core/constants/app_string.s.dart';
 import 'package:invest_note/core/di/get_it.dart';
 import 'package:invest_note/core/response/get_search_response.dart';
 import 'package:invest_note/core/service/coingecko_service.dart';
@@ -33,22 +34,20 @@ class _CryptoCurrencyBottomSheetState extends State<CryptoCurrencyBottomSheet> {
             _SearchBar(textEditingController: _textEditingController),
             const SizedBox(height: 8.0),
             BlocBuilder<AssetBloc, AssetState>(
-              builder: (context, state) {
-                return switch (state) {
-                  AssetLoading() =>
-                    Expanded(child: Center(child: CircularProgressIndicator())),
-                  AssetSearchSuccess() => Expanded(
-                      child: _CryptoCurrencyList(
-                        state: state,
-                        onTap: (cryptoCoin) {},
-                      ),
+              builder: (context, state) => switch (state) {
+                AssetLoading() =>
+                  Expanded(child: Center(child: CircularProgressIndicator())),
+                AssetSearchSuccess() => Expanded(
+                    child: _CryptoCurrencyList(
+                      state: state,
+                      onTap: (cryptoCoin) {},
                     ),
-                  _ => Expanded(
-                      child: _CryptoCurrencyList(
-                        state: AssetSearchSuccess([]),
-                      ),
+                  ),
+                _ => Expanded(
+                    child: _CryptoCurrencyList(
+                      state: AssetSearchSuccess([]),
                     ),
-                };
+                  ),
               },
             )
           ],
@@ -77,7 +76,7 @@ class _SearchBarState extends State<_SearchBar> {
       child: TextField(
         controller: widget.textEditingController,
         decoration: InputDecoration(
-          hintText: '輸入虛擬貨幣名稱或代號',
+          hintText: AppString.cryptoCurrencySearchHint.getI18n(context),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
